@@ -25,7 +25,6 @@ services:
     environment:
       - PUID=0
       - PGID=0
-      - TZ=Etc/UTC
     volumes:
       - /mnt/c/Servers/sonarr/data:/config
       - media_share:/data
@@ -46,7 +45,6 @@ services:
     environment:
       - PUID=0
       - PGID=0
-      - TZ=Etc/UTC
     volumes:
       - /mnt/c/Servers/radarr/data:/config
       - media_share:/data
@@ -87,7 +85,6 @@ services:
     environment:
       - PUID=0
       - PGID=0
-      - TZ=Etc/UTC
     volumes:
       - /mnt/c/Servers/bazarr/config:/config
       - media_share:/data
@@ -137,7 +134,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
