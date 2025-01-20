@@ -183,6 +183,7 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/c/Servers/portainer:/data
     restart: unless-stopped
     labels:
       - homepage.group=Admin
@@ -190,26 +191,6 @@ services:
       - homepage.icon=sh-portainer.png
       - homepage.href=http://portainer.alexball.uk
       - homepage.description=Docker container management
-      
-      
-  glances:
-    image: nicolargo/glances:latest-full
-    container_name: glances
-    pid: host
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock
-    environment:
-      - "GLANCES_OPT=-w"
-    #ports:
-    #  - 61208:61208
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Glances
-      - homepage.icon=sh-glances.png
-      - homepage.href=http://glances.alexball.uk
-      - homepage.description=Server Details
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
