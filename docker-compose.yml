@@ -1,0 +1,249 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=0
+      - PGID=0
+      - JELLYFIN_PublishedServerUrl=http://jellyfin.alexball.uk
+    volumes:
+      -  /mnt/c/Servers/jellyfin/library:/config
+      -  media_share:/data
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+    labels:
+      - homepage.group=Media
+      - homepage.name=Jellyfin
+      - homepage.icon=sh-jellyfin.png
+      - homepage.href=http://jellyfin.alexball.uk
+      - homepage.description=Media server
+    
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/c/Servers/sonarr/data:/config
+      - media_share:/data
+      - ${DOWNLOAD_LOCATION}:/data/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Sonarr
+      - homepage.icon=sh-sonarr.png
+      - homepage.href=http://sonarr.alexball.uk
+      - homepage.description=TV Show fetcher
+    
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/c/Servers/radarr/data:/config
+      - media_share:/data
+      - ${DOWNLOAD_LOCATION}:/data/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Radarr
+      - homepage.icon=sh-radarr.png
+      - homepage.href=http://radarr.alexball.uk
+      - homepage.description=Movie fetcher
+    
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=0
+      - PGID=0
+    volumes:
+      - /mnt/c/Servers/readarr/data:/config
+      - media_share:/books
+      - ${DOWNLOAD_LOCATION}:/data/downloads
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Readarr
+      - homepage.icon=sh-readarr.png
+      - homepage.href=http://readarr.alexball.uk
+      - homepage.description=Book & Audiobook fetcher
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/c/Servers/bazarr/config:/config
+      - media_share:/data
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Bazarr
+      - homepage.icon=sh-bazarr.png
+      - homepage.href=http://bazarr.alexball.uk
+      - homepage.description=Subtitle fetcher
+    
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    volumes:
+      -  /mnt/c/Servers/prowlarr/config:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Prowlarr
+      - homepage.icon=sh-prowlarr.png
+      - homepage.href=http://prowlarr.alexball.uk
+      - homepage.description=Indexer fetcher
+    
+  ombi:
+    image: lscr.io/linuxserver/ombi:latest
+    container_name: ombi
+    volumes:
+      -  /mnt/c/Servers/ombi/config:/config
+    ports:
+      - 3579:3579
+    restart: unless-stopped
+    labels:
+      - homepage.group=Media
+      - homepage.name=Requester
+      - homepage.icon=sh-ombi.png
+      - homepage.href=http://requester.alexball.uk
+      - homepage.description=Content Requester
+    
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /mnt/c/Servers/qbittorrent/appdata:/config
+      - ${DOWNLOAD_LOCATION}:/data/downloads
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=QBittorent
+      - homepage.icon=sh-qbittorrent.png
+      - homepage.href=http://qb.alexball.uk
+      - homepage.description=Torrent downloader
+    
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    environment:
+      - PUID=0
+      - PGID=0 
+    ports:
+      - 13378:80
+    volumes:
+      - media_share:/data
+      - /mnt/c/Servers/audiobookshelf/config:/config
+      - /mnt/c/Servers/audiobookshelf/metadata:/metadata
+    restart: unless-stopped
+    labels:
+      - homepage.group=Media
+      - homepage.name=AudioBookshelf
+      - homepage.icon=sh-audiobookshelf.png
+      - homepage.href=http://audiobookshelf.alexball.uk
+      - homepage.description=Audiobook Server
+      
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 9443:9443
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Portainer
+      - homepage.icon=sh-portainer.png
+      - homepage.href=http://portainer.alexball.uk
+      - homepage.description=Docker container management
+      
+      
+  glances:
+    image: nicolargo/glances:latest-full
+    container_name: glances
+    pid: host
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock
+    environment:
+      - "GLANCES_OPT=-w"
+    #ports:
+    #  - 61208:61208
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Glances
+      - homepage.icon=sh-glances.png
+      - homepage.href=http://glances.alexball.uk
+      - homepage.description=Server Details
+      
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      - PUID=1001
+      - PGID=1001
+    ports:
+      - 3000:3000
+    volumes:
+      - /mnt/c/Servers/homepage/config:/app/config
+      - media_share:/data
+    restart: unless-stopped
+    
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1 # Allow access to viewing containers
+      - SERVICES=1 # Allow access to viewing services (necessary when using Docker Swarm)
+      - TASKS=1 # Allow access to viewing tasks (necessary when using Docker Swarm)
+      - POST=0 # Disallow any POST operations (effectively read-only)
+    ports:
+      - 127.0.0.1:2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
+    restart: unless-stopped
+    
+volumes:
+  media_share:
+    driver: local
+    driver_opts:
+      type: cifs
+      o: "username=,password=,vers=1.0,uid=1001,gid=1001"
+      device: "//192.168.1.211/6TB Share"
+  redis:
+  es:
