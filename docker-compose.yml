@@ -175,23 +175,6 @@ services:
       - homepage.href=http://audiobookshelf.alexball.uk
       - homepage.description=Audiobook Server
       
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    ports:
-      - 9443:9443
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/c/Servers/portainer:/data
-    restart: unless-stopped
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Portainer
-      - homepage.icon=sh-portainer.png
-      - homepage.href=http://portainer.alexball.uk
-      - homepage.description=Docker container management
-      
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
