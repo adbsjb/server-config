@@ -219,14 +219,9 @@ services:
 
       # Add more ports based on the servers you create
       - "25565:25565"
-
     volumes:
-      - type: volume
-        source: media_share:
-        target: /root/.auto-mcs
-        volume:
-          subpath: auto-mcs
-      
+      - /mnt/e/auto-mcs:/root/.auto-mcs
+              
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -261,5 +256,3 @@ volumes:
       type: cifs
       o: "username=,password=,vers=1.0,uid=1001,gid=1001"
       device: "//192.168.1.211/6TB Share"
-  redis:
-  es:
