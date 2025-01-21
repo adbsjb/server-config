@@ -221,6 +221,12 @@ services:
       - "25565:25565"
     volumes:
       - /mnt/e/auto-mcs:/root/.auto-mcs
+    labels:
+    - homepage.group=Admin
+    - homepage.name=Auto-MCS
+    - homepage.icon=sh-auto-mcs.png
+    - homepage.href=http://mcs.alexball.uk
+    - homepage.description=Minecraft server manager
               
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
