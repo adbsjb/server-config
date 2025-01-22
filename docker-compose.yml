@@ -191,40 +191,26 @@ services:
       - homepage.description=Server Details
       
       
-  auto-mcs:
-    command: [
-      "auto-mcs-ttyd",
-      "-W",
-      "-t", "disableLeaveAlert=true",
-      "-t", "titleFixed=auto-mcs (docker)",
-      "-t", "fontSize=20",
-      "-t", "theme={\"background\": \"#1A1A1A\"}",
-      "-p", "8080",
-      "tmux", "-u", "-2", "new", "-A", "-s", "-c",
-      "./auto-mcs"
-    ]
-
-    image: macarooniman/auto-mcs:latest
-    container_name: auto-mcs
-    stdin_open: true
-    tty: true
+  crafty:
+    container_name: crafty
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
     restart: always
     ports:
-      # ttyd web UI
-      - "8585:8080"
-
-      # Telepath API (auto-mcs)
-      - "7001:7001"
-
-      # Add more ports based on the servers you create
-      - "25565:25565"
+        - "8443:8443" # HTTPS
+        - "8123:8123" # DYNMAP
+        - "19132:19132/udp" # BEDROCK
+        - "25500-25600:25500-25600" # MC SERV PORT RANGE
     volumes:
-      - /mnt/e/auto-mcs:/root/.auto-mcs
+        - /mnt/e/crafty:/crafty/backups
+        - /mnt/e/crafty:/crafty/logs
+        - /mnt/e/crafty:/crafty/servers
+        - /mnt/e/crafty:/crafty/app/config
+        - /mnt/e/crafty:/crafty/import
     labels:
     - homepage.group=Admin
-    - homepage.name=Auto-MCS
-    - homepage.icon=sh-auto-mcs.png
-    - homepage.href=http://mcs.alexball.uk
+    - homepage.name=Crafty
+    - homepage.icon=sh-crafty.png
+    - homepage.href=http://crafty.alexball.uk
     - homepage.description=Minecraft server manager
               
   homepage:
