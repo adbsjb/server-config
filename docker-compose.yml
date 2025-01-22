@@ -209,9 +209,19 @@ services:
     labels:
     - homepage.group=Admin
     - homepage.name=Crafty
-    - homepage.icon=sh-crafty.png
+    - homepage.icon=sh-crafty-controller.png
     - homepage.href=http://crafty.alexball.uk
     - homepage.description=Minecraft server manager
+    
+  wizarr:
+    container_name: wizarr
+    image: ghcr.io/wizarrrr/wizarr:latest
+    ports:
+      - 5690:5690
+    volumes:
+      - /mnt/c/Servers/wizarr/database:/data/database
+    
+    # https://github.com/Wizarrrr/wizarr
               
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
