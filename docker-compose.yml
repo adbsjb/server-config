@@ -207,11 +207,11 @@ services:
         - /mnt/e/crafty:/crafty/app/config
         - /mnt/e/crafty:/crafty/import
     labels:
-    - homepage.group=Admin
-    - homepage.name=Crafty
-    - homepage.icon=sh-crafty-controller.png
-    - homepage.href=http://crafty.alexball.uk
-    - homepage.description=Minecraft server manager
+      - homepage.group=Admin
+      - homepage.name=Crafty
+      - homepage.icon=sh-crafty-controller.png
+      - homepage.href=http://crafty.alexball.uk
+      - homepage.description=Minecraft server manager
     
   wizarr:
     container_name: wizarr
@@ -220,9 +220,13 @@ services:
       - 5690:5690
     volumes:
       - /mnt/c/Servers/wizarr/database:/data/database
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Wizarr
+      - homepage.icon=sh-wizarr.png
+      - homepage.href=http://wizarr.alexball.uk
+      - homepage.description=Server invite manager
     
-    # https://github.com/Wizarrrr/wizarr
-              
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
