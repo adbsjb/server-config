@@ -226,6 +226,17 @@ services:
       - homepage.icon=sh-wizarr.png
       - homepage.href=http://wizarr.alexball.uk
       - homepage.description=Server invite manager
+	  
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+    ports:
+      - 5055:5055
+    volumes:
+      - /mnt/c/Servers/jellyseerr:/app/config
+    restart: unless-stopped
     
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
