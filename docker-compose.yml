@@ -228,7 +228,7 @@ services:
       - homepage.icon=sh-wizarr.png
       - homepage.href=http://wizarr.alexball.uk
       - homepage.description=Server invite manager
-	  
+
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
