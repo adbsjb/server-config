@@ -245,7 +245,25 @@ services:
       - homepage.icon=sh-jellyseerr.png
       - homepage.href=http://jellyseerr.alexball.uk
       - homepage.description=Content Requester
-    
+      
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+        - "9925:9000"
+    volumes:
+      - /mnt/c/Servers/mealie:/app/data/
+    environment:
+      ALLOW_SIGNUP: "false"
+      BASE_URL: https://mealie.alexball.uk
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Mealie
+      - homepage.icon=sh-mealie.png
+      - homepage.href=http://mealie.alexball.uk
+      - homepage.description=Recipe Database
+      
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
