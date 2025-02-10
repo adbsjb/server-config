@@ -123,7 +123,7 @@ services:
     restart: unless-stopped
     labels:
       - homepage.group=Admin
-      - homepage.name=Requester
+      - homepage.name=Ombi
       - homepage.icon=sh-ombi.png
       - homepage.href=http://ombi.alexball.uk
       - homepage.description=Content Requester
