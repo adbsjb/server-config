@@ -258,11 +258,25 @@ services:
       ALLOW_SIGNUP: "false"
       BASE_URL: https://mealie.alexball.uk
     labels:
-      - homepage.group=Admin
+      - homepage.group=Media
       - homepage.name=Mealie
       - homepage.icon=sh-mealie.png
       - homepage.href=http://mealie.alexball.uk
       - homepage.description=Recipe Database
+
+  lurker:
+    image: ghcr.io/oppiliappan/lurker:latest
+    container_name: lurker
+    volumes:
+      - /mnt/c/Servers/lurker:/data
+    ports:
+      - "3333:3000"
+    labels:
+      - homepage.group=Media
+      - homepage.name=Lurker
+      - homepage.icon=sh-lurker.png
+      - homepage.href=http://lurker.alexball.uk
+      - homepage.description=Alt Reddit Frontend
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
