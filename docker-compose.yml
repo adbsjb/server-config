@@ -267,6 +267,7 @@ services:
   lurker:
     image: ghcr.io/oppiliappan/lurker:latest
     container_name: lurker
+    restart: unless-stopped
     volumes:
       - /mnt/c/Servers/lurker:/data
     ports:
