@@ -274,9 +274,61 @@ services:
     labels:
       - homepage.group=Media
       - homepage.name=Lurker
-      - homepage.icon=sh-lurker.png
+      - homepage.icon=sh-reddit-light.png
       - homepage.href=http://lurker.alexball.uk
       - homepage.description=Alt Reddit Frontend
+      
+  romm:
+    image: rommapp/romm:latest
+    container_name: romm
+    restart: unless-stopped
+    environment:
+      - DB_HOST=romm-db
+      - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+      - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+      - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
+      - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
+      - IGDB_CLIENT_ID= # Generate an ID and SECRET in IGDB
+      - IGDB_CLIENT_SECRET= # https://api-docs.igdb.com/#account-creation
+      - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
+      - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+    volumes:
+      - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - romm_redis_data:/redis-data # Cached data for background tasks
+      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/assets:/romm/assets # Uploaded saves, states, etc.
+      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/config:/romm/config # Path where config.yml is stored
+    ports:
+      - 8487:8080
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+    labels:
+      - homepage.group=Media
+      - homepage.name=RomM
+      - homepage.icon=sh-RomM.png
+      - homepage.href=http://romm.alexball.uk
+      - homepage.description=Retro game manager and player
+
+  romm-db:
+    image: mariadb:latest
+    container_name: romm-db
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=password # Use a unique, secure password
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+      - MARIADB_PASSWORD=password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
@@ -312,3 +364,6 @@ volumes:
       type: cifs
       o: "username=,password=,vers=1.0,uid=1001,gid=1001"
       device: "//192.168.1.211/6TB Share"
+  mysql_data:
+  romm_resources:
+  romm_redis_data:
