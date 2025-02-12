@@ -308,7 +308,7 @@ services:
     labels:
       - homepage.group=Media
       - homepage.name=RomM
-      - homepage.icon=sh-RomM.png
+      - homepage.icon=sh-romm.png
       - homepage.href=http://romm.alexball.uk
       - homepage.description=Retro game manager and player
 
