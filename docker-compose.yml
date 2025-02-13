@@ -289,8 +289,8 @@ services:
       - DB_USER=romm-user # Should match MARIADB_USER in mariadb
       - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
       - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
-      - IGDB_CLIENT_ID= # Generate an ID and SECRET in IGDB
-      - IGDB_CLIENT_SECRET= # https://api-docs.igdb.com/#account-creation
+      - IGDB_CLIENT_ID=b4lke35h17mtn270rhmdq7gfta3slp # Generate an ID and SECRET in IGDB
+      - IGDB_CLIENT_SECRET=yb4sbr4qncsrt3s5idygri12yze4ev # https://api-docs.igdb.com/#account-creation
       - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
       - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
     volumes:
