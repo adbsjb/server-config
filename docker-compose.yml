@@ -273,7 +273,7 @@ services:
     ports:
       - "3333:3000"
     labels:
-      - homepage.group=Media
+      - homepage.group=Admin
       - homepage.name=Lurker
       - homepage.icon=sh-reddit-light.png
       - homepage.href=http://lurker.alexball.uk
@@ -306,7 +306,7 @@ services:
         condition: service_healthy
         restart: true
     labels:
-      - homepage.group=Media
+      - homepage.group=Admin
       - homepage.name=RomM
       - homepage.icon=sh-romm.png
       - homepage.href=http://romm.alexball.uk
