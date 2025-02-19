@@ -199,7 +199,8 @@ services:
     ports:
         - "8443:8443" # HTTPS
         - "8123:8123" # DYNMAP
-        - "19132:19132/udp" # BEDROCK
+        - "19132:19132/udp" # BEDROCK UDP
+        - "19132:19132/tcp" # BEDROCK TCP
         - "25500-25600:25500-25600" # MC SERV PORT RANGE
     volumes:
         - /mnt/e/crafty:/crafty/backups
@@ -304,7 +305,6 @@ services:
     depends_on:
       romm-db:
         condition: service_healthy
-        restart: true
     labels:
       - homepage.group=Admin
       - homepage.name=RomM
@@ -326,7 +326,6 @@ services:
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 30s
-      start_interval: 10s
       interval: 10s
       timeout: 5s
       retries: 5
