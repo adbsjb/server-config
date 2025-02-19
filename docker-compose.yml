@@ -113,20 +113,20 @@ services:
       - homepage.href=http://prowlarr.alexball.uk
       - homepage.description=Indexer fetcher
     
-  ombi:
-    image: lscr.io/linuxserver/ombi:latest
-    container_name: ombi
-    volumes:
-      -  /mnt/c/Servers/ombi/config:/config
-    ports:
-      - 3579:3579
-    restart: unless-stopped
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Ombi
-      - homepage.icon=sh-ombi.png
-      - homepage.href=http://ombi.alexball.uk
-      - homepage.description=Content Requester
+  # ombi:
+    # image: lscr.io/linuxserver/ombi:latest
+    # container_name: ombi
+    # volumes:
+      # -  /mnt/c/Servers/ombi/config:/config
+    # ports:
+      # - 3579:3579
+    # restart: unless-stopped
+    # labels:
+      # - homepage.group=Admin
+      # - homepage.name=Ombi
+      # - homepage.icon=sh-ombi.png
+      # - homepage.href=http://ombi.alexball.uk
+      # - homepage.description=Content Requester
     
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -192,28 +192,28 @@ services:
       - homepage.description=Server Details
       
       
-  crafty:
-    container_name: crafty
-    image: registry.gitlab.com/crafty-controller/crafty-4:latest
-    restart: unless-stopped
-    ports:
-        - "8443:8443" # HTTPS
-        - "8123:8123" # DYNMAP
-        - "19132:19132/udp" # BEDROCK UDP
-        - "19132:19132/tcp" # BEDROCK TCP
-        - "25500-25600:25500-25600" # MC SERV PORT RANGE
-    volumes:
-        - /mnt/e/crafty:/crafty/backups
-        - /mnt/e/crafty:/crafty/logs
-        - /mnt/e/crafty:/crafty/servers
-        - /mnt/e/crafty:/crafty/app/config
-        - /mnt/e/crafty:/crafty/import
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Crafty
-      - homepage.icon=sh-crafty-controller.png
-      - homepage.href=http://crafty.alexball.uk
-      - homepage.description=Minecraft server manager
+  # crafty:
+    # container_name: crafty
+    # image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    # restart: unless-stopped
+    # ports:
+        # - "8443:8443" # HTTPS
+        # - "8123:8123" # DYNMAP
+        # - "19132:19132/udp" # BEDROCK UDP
+        # - "19132:19132/tcp" # BEDROCK TCP
+        # - "25500-25600:25500-25600" # MC SERV PORT RANGE
+    # volumes:
+        # - /mnt/e/crafty:/crafty/backups
+        # - /mnt/e/crafty:/crafty/logs
+        # - /mnt/e/crafty:/crafty/servers
+        # - /mnt/e/crafty:/crafty/app/config
+        # - /mnt/e/crafty:/crafty/import
+    # labels:
+      # - homepage.group=Admin
+      # - homepage.name=Crafty
+      # - homepage.icon=sh-crafty-controller.png
+      # - homepage.href=http://crafty.alexball.uk
+      # - homepage.description=Minecraft server manager
     
   wizarr:
     container_name: wizarr
@@ -280,55 +280,55 @@ services:
       - homepage.href=http://lurker.alexball.uk
       - homepage.description=Alt Reddit Frontend
       
-  romm:
-    image: rommapp/romm:latest
-    container_name: romm
-    restart: unless-stopped
-    environment:
-      - DB_HOST=romm-db
-      - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
-      - DB_USER=romm-user # Should match MARIADB_USER in mariadb
-      - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
-      - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
-      - IGDB_CLIENT_ID=b4lke35h17mtn270rhmdq7gfta3slp # Generate an ID and SECRET in IGDB
-      - IGDB_CLIENT_SECRET=yb4sbr4qncsrt3s5idygri12yze4ev # https://api-docs.igdb.com/#account-creation
-      - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
-      - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
-    volumes:
-      - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
-      - romm_redis_data:/redis-data # Cached data for background tasks
-      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
-      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/assets:/romm/assets # Uploaded saves, states, etc.
-      - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/config:/romm/config # Path where config.yml is stored
-    ports:
-      - 8487:8080
-    depends_on:
-      romm-db:
-        condition: service_healthy
-    labels:
-      - homepage.group=Admin
-      - homepage.name=RomM
-      - homepage.icon=sh-romm.png
-      - homepage.href=http://romm.alexball.uk
-      - homepage.description=Retro game manager and player
+  # romm:
+    # image: rommapp/romm:latest
+    # container_name: romm
+    # restart: unless-stopped
+    # environment:
+      # - DB_HOST=romm-db
+      # - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+      # - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+      # - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
+      # - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
+      # - IGDB_CLIENT_ID=b4lke35h17mtn270rhmdq7gfta3slp # Generate an ID and SECRET in IGDB
+      # - IGDB_CLIENT_SECRET=yb4sbr4qncsrt3s5idygri12yze4ev # https://api-docs.igdb.com/#account-creation
+      # - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
+      # - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+    # volumes:
+      # - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      # - romm_redis_data:/redis-data # Cached data for background tasks
+      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/assets:/romm/assets # Uploaded saves, states, etc.
+      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/config:/romm/config # Path where config.yml is stored
+    # ports:
+      # - 8487:8080
+    # depends_on:
+      # romm-db:
+        # condition: service_healthy
+    # labels:
+      # - homepage.group=Admin
+      # - homepage.name=RomM
+      # - homepage.icon=sh-romm.png
+      # - homepage.href=http://romm.alexball.uk
+      # - homepage.description=Retro game manager and player
 
-  romm-db:
-    image: mariadb:latest
-    container_name: romm-db
-    restart: unless-stopped
-    environment:
-      - MARIADB_ROOT_PASSWORD=password # Use a unique, secure password
-      - MARIADB_DATABASE=romm
-      - MARIADB_USER=romm-user
-      - MARIADB_PASSWORD=password
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      start_period: 30s
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # romm-db:
+    # image: mariadb:latest
+    # container_name: romm-db
+    # restart: unless-stopped
+    # environment:
+      # - MARIADB_ROOT_PASSWORD=password # Use a unique, secure password
+      # - MARIADB_DATABASE=romm
+      # - MARIADB_USER=romm-user
+      # - MARIADB_PASSWORD=password
+    # volumes:
+      # - mysql_data:/var/lib/mysql
+    # healthcheck:
+      # test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      # start_period: 30s
+      # interval: 10s
+      # timeout: 5s
+      # retries: 5
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
