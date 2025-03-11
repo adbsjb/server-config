@@ -280,55 +280,41 @@ services:
       - homepage.href=http://lurker.alexball.uk
       - homepage.description=Alt Reddit Frontend
       
-  # romm:
-    # image: rommapp/romm:latest
-    # container_name: romm
-    # restart: unless-stopped
-    # environment:
-      # - DB_HOST=romm-db
-      # - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
-      # - DB_USER=romm-user # Should match MARIADB_USER in mariadb
-      # - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
-      # - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
-      # - IGDB_CLIENT_ID=b4lke35h17mtn270rhmdq7gfta3slp # Generate an ID and SECRET in IGDB
-      # - IGDB_CLIENT_SECRET=yb4sbr4qncsrt3s5idygri12yze4ev # https://api-docs.igdb.com/#account-creation
-      # - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
-      # - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
-    # volumes:
-      # - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
-      # - romm_redis_data:/redis-data # Cached data for background tasks
-      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
-      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/assets:/romm/assets # Uploaded saves, states, etc.
-      # - /mnt/c/Users/adbsj/OneDrive/Documents/Server config files/romm/config:/romm/config # Path where config.yml is stored
-    # ports:
-      # - 8487:8080
-    # depends_on:
-      # romm-db:
-        # condition: service_healthy
-    # labels:
-      # - homepage.group=Admin
-      # - homepage.name=RomM
-      # - homepage.icon=sh-romm.png
-      # - homepage.href=http://romm.alexball.uk
-      # - homepage.description=Retro game manager and player
-
-  # romm-db:
-    # image: mariadb:latest
-    # container_name: romm-db
-    # restart: unless-stopped
-    # environment:
-      # - MARIADB_ROOT_PASSWORD=password # Use a unique, secure password
-      # - MARIADB_DATABASE=romm
-      # - MARIADB_USER=romm-user
-      # - MARIADB_PASSWORD=password
-    # volumes:
-      # - mysql_data:/var/lib/mysql
-    # healthcheck:
-      # test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      # start_period: 30s
-      # interval: 10s
-      # timeout: 5s
-      # retries: 5
+  dumbpad:
+    image: dumbwareio/dumbpad:latest
+    container_name: dumbpad
+    restart: unless-stopped
+    ports:
+      - 3000:3756
+    volumes:
+      # Where your notes will be stored
+      - /mnt/c/Servers/dumbpad:/app/data
+    environment:
+      # The title shown in the web interface
+      SITE_TITLE: DumbPad
+      # Optional PIN protection (leave empty to disable)
+      DUMBPAD_PIN:
+      # The base URL for the application
+      BASE_URL: http://localhost:3756
+      
+  dumbdrop:
+    image: dumbwareio/dumbdrop:latest
+    ports:
+        - 3000:3757
+    volumes:
+        # Where your uploaded files will land
+        - /mnt/c/Servers/dumbdrop:/app/uploads 
+    environment:
+        # The title shown in the web interface
+        DUMBDROP_TITLE: DumbDrop
+        # Maximum file size in MB
+        MAX_FILE_SIZE: 1024
+        # Optional PIN protection (leave empty to disable)
+        DUMBDROP_PIN:
+        # Upload without clicking button
+        AUTO_UPLOAD: false
+        # The base URL for the application
+        BASE_URL: http://localhost:3757
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
