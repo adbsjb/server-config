@@ -295,7 +295,7 @@ services:
       # Optional PIN protection (leave empty to disable)
       DUMBPAD_PIN:
       # The base URL for the application
-      BASE_URL: http://localhost:3756
+      BASE_URL: https://dumbpad.alexball.uk/
     labels:
       - homepage.group=Admin
       - homepage.name=Dumbpad
@@ -322,7 +322,7 @@ services:
         # Upload without clicking button
         AUTO_UPLOAD: false
         # The base URL for the application
-        BASE_URL: http://localhost:3757
+        BASE_URL: http://dumbdrop.alexball.uk
     labels:
       - homepage.group=Admin
       - homepage.name=Dumbdrop
