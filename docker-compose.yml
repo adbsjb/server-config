@@ -297,11 +297,11 @@ services:
       # The base URL for the application
       BASE_URL: https://dumbpad.alexball.uk
     labels:
-      - homepage.group=Admin
+      - homepage.group=Media
       - homepage.name=Dumbpad
       - homepage.icon=sh-dumbpad.png
       - homepage.href=http://dumbpad.alexball.uk
-      - homepage.description=Simple note taker
+      - homepage.description=Simple collaborative note taker
       
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
@@ -328,7 +328,20 @@ services:
       - homepage.name=Dumbdrop
       - homepage.icon=sh-dumbdrop.png
       - homepage.href=http://dumbdrop.alexball.uk
-      - homepage.description=Simple small file sharer
+      - homepage.description=Simple small file uploader
+      
+  dumbwhois:
+    image: dumbwareio/dumbwhois:latest
+    container_name: dumbwhois
+    restart: unless-stopped
+    ports:
+        - 3758:3000
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Dumbwhois
+      - homepage.icon=sh-dumbwhois.png
+      - homepage.href=http://dumbwhois.alexball.uk
+      - homepage.description=Simple whois lookup
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
