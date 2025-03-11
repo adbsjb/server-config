@@ -295,7 +295,7 @@ services:
       # Optional PIN protection (leave empty to disable)
       DUMBPAD_PIN:
       # The base URL for the application
-      BASE_URL: https://dumbpad.alexball.uk/
+      BASE_URL: https://dumbpad.alexball.uk
     labels:
       - homepage.group=Admin
       - homepage.name=Dumbpad
@@ -318,9 +318,9 @@ services:
         # Maximum file size in MB
         MAX_FILE_SIZE: 1024
         # Optional PIN protection (leave empty to disable)
-        DUMBDROP_PIN:
+        DUMBDROP_PIN: 2525
         # Upload without clicking button
-        AUTO_UPLOAD: false
+        AUTO_UPLOAD: true
         # The base URL for the application
         BASE_URL: http://dumbdrop.alexball.uk
     labels:
