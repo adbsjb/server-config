@@ -343,6 +343,29 @@ services:
       - homepage.href=http://dumbwhois.alexball.uk
       - homepage.description=Simple whois lookup
       
+  dumbdo:
+    image: dumbwareio/dumbdo:latest
+    container_name: dumbdo
+    restart: unless-stopped
+    ports:
+      - 3759:3000
+    volumes:
+      # Where your notes will be stored
+      - /mnt/c/Servers/dumbdo:/app/data
+    environment:
+      # The title shown in the web interface
+      SITE_TITLE: DumbDo
+      # Optional PIN protection (leave empty to disable)
+      DUMBPAD_PIN:
+      # The base URL for the application
+      BASE_URL: https://dumbdo.alexball.uk
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Dumbdo
+      - homepage.icon=sh-dumbdo.png
+      - homepage.href=http://dumbdo.alexball.uk
+      - homepage.description=Simple collaborative to do list
+      
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
