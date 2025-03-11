@@ -296,9 +296,17 @@ services:
       DUMBPAD_PIN:
       # The base URL for the application
       BASE_URL: http://localhost:3756
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Dumbpad
+      - homepage.icon=sh-dumbpad.png
+      - homepage.href=http://dumbpad.alexball.uk
+      - homepage.description=Simple note taker
       
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
+    container_name: dumbdrop
+    restart: unless-stopped
     ports:
         - 3757:3000
     volumes:
@@ -315,6 +323,12 @@ services:
         AUTO_UPLOAD: false
         # The base URL for the application
         BASE_URL: http://localhost:3757
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Dumbdrop
+      - homepage.icon=sh-dumbdrop.png
+      - homepage.href=http://dumbdrop.alexball.uk
+      - homepage.description=Simple small file sharer
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
