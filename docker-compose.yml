@@ -285,7 +285,7 @@ services:
     container_name: dumbpad
     restart: unless-stopped
     ports:
-      - 3000:3756
+      - 3756:3000
     volumes:
       # Where your notes will be stored
       - /mnt/c/Servers/dumbpad:/app/data
@@ -300,7 +300,7 @@ services:
   dumbdrop:
     image: dumbwareio/dumbdrop:latest
     ports:
-        - 3000:3757
+        - 3757:3000
     volumes:
         # Where your uploaded files will land
         - /mnt/c/Servers/dumbdrop:/app/uploads 
