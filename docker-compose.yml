@@ -7,7 +7,7 @@ services:
       - PGID=0
       - JELLYFIN_PublishedServerUrl=http://jellyfin.alexball.uk
     volumes:
-      -  /mnt/c/Servers/jellyfin/library:/config
+      -  ${ROOT_SERVER_CONFIG}/jellyfin/library:/config
       -  media_share:/data
     ports:
       - 8096:8096
@@ -26,7 +26,7 @@ services:
       - PUID=0
       - PGID=0
     volumes:
-      - /mnt/c/Servers/sonarr/data:/config
+      - ${ROOT_SERVER_CONFIG}/sonarr/data:/config
       - media_share:/data
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
@@ -46,7 +46,7 @@ services:
       - PUID=0
       - PGID=0
     volumes:
-      - /mnt/c/Servers/radarr/data:/config
+      - ${ROOT_SERVER_CONFIG}/radarr/data:/config
       - media_share:/data
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
@@ -66,7 +66,7 @@ services:
       - PUID=0
       - PGID=0
     volumes:
-      - /mnt/c/Servers/readarr/data:/config
+      - ${ROOT_SERVER_CONFIG}/readarr/data:/config
       - media_share:/books
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
@@ -86,7 +86,7 @@ services:
       - PUID=0
       - PGID=0
     volumes:
-      - /mnt/c/Servers/bazarr/config:/config
+      - ${ROOT_SERVER_CONFIG}/bazarr/config:/config
       - media_share:/data
     ports:
       - 6767:6767
@@ -102,7 +102,7 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     volumes:
-      -  /mnt/c/Servers/prowlarr/config:/config
+      -  ${ROOT_SERVER_CONFIG}/prowlarr/config:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -113,21 +113,6 @@ services:
       - homepage.href=http://prowlarr.alexball.uk
       - homepage.description=Indexer fetcher
     
-  # ombi:
-    # image: lscr.io/linuxserver/ombi:latest
-    # container_name: ombi
-    # volumes:
-      # -  /mnt/c/Servers/ombi/config:/config
-    # ports:
-      # - 3579:3579
-    # restart: unless-stopped
-    # labels:
-      # - homepage.group=Admin
-      # - homepage.name=Ombi
-      # - homepage.icon=sh-ombi.png
-      # - homepage.href=http://ombi.alexball.uk
-      # - homepage.description=Content Requester
-    
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
@@ -137,7 +122,7 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /mnt/c/Servers/qbittorrent/appdata:/config
+      - ${ROOT_SERVER_CONFIG}/qbittorrent/appdata:/config
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
       - 8080:8080
@@ -161,8 +146,8 @@ services:
       - 13378:80
     volumes:
       - media_share:/data
-      - /mnt/c/Servers/audiobookshelf/config:/config
-      - /mnt/c/Servers/audiobookshelf/metadata:/metadata
+      - ${ROOT_SERVER_CONFIG}/audiobookshelf/config:/config
+      - ${ROOT_SERVER_CONFIG}/audiobookshelf/metadata:/metadata
     restart: unless-stopped
     labels:
       - homepage.group=Media
@@ -190,30 +175,6 @@ services:
       - homepage.icon=sh-glances.png
       - homepage.href=http://glances.alexball.uk
       - homepage.description=Server Details
-      
-      
-  # crafty:
-    # container_name: crafty
-    # image: registry.gitlab.com/crafty-controller/crafty-4:latest
-    # restart: unless-stopped
-    # ports:
-        # - "8443:8443" # HTTPS
-        # - "8123:8123" # DYNMAP
-        # - "19132:19132/udp" # BEDROCK UDP
-        # - "19132:19132/tcp" # BEDROCK TCP
-        # - "25500-25600:25500-25600" # MC SERV PORT RANGE
-    # volumes:
-        # - /mnt/e/crafty:/crafty/backups
-        # - /mnt/e/crafty:/crafty/logs
-        # - /mnt/e/crafty:/crafty/servers
-        # - /mnt/e/crafty:/crafty/app/config
-        # - /mnt/e/crafty:/crafty/import
-    # labels:
-      # - homepage.group=Admin
-      # - homepage.name=Crafty
-      # - homepage.icon=sh-crafty-controller.png
-      # - homepage.href=http://crafty.alexball.uk
-      # - homepage.description=Minecraft server manager
     
   wizarr:
     container_name: wizarr
@@ -222,7 +183,7 @@ services:
     ports:
       - 5690:5690
     volumes:
-      - /mnt/c/Servers/wizarr/database:/data/database
+      - ${ROOT_SERVER_CONFIG}/wizarr/database:/data/database
     labels:
       - homepage.group=Admin
       - homepage.name=Wizarr
@@ -238,7 +199,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - /mnt/c/Servers/jellyseerr:/app/config
+      - ${ROOT_SERVER_CONFIG}/jellyseerr:/app/config
     restart: unless-stopped
     labels:
       - homepage.group=Media
@@ -254,7 +215,7 @@ services:
     ports:
         - "9925:9000"
     volumes:
-      - /mnt/c/Servers/mealie:/app/data/
+      - ${ROOT_SERVER_CONFIG}/mealie:/app/data/
     environment:
       ALLOW_SIGNUP: "false"
       BASE_URL: https://mealie.alexball.uk
@@ -270,7 +231,7 @@ services:
     container_name: lurker
     restart: unless-stopped
     volumes:
-      - /mnt/c/Servers/lurker:/data
+      - ${ROOT_SERVER_CONFIG}/lurker:/data
     ports:
       - "3333:3000"
     labels:
@@ -288,7 +249,7 @@ services:
       - 3756:3000
     volumes:
       # Where your notes will be stored
-      - /mnt/c/Servers/dumbpad:/app/data
+      - ${ROOT_SERVER_CONFIG}/dumbpad:/app/data
     environment:
       # The title shown in the web interface
       SITE_TITLE: DumbPad
@@ -311,7 +272,7 @@ services:
         - 3757:3000
     volumes:
         # Where your uploaded files will land
-        - /mnt/c/Servers/dumbdrop:/app/uploads 
+        - ${ROOT_SERVER_CONFIG}/dumbdrop:/app/uploads 
     environment:
         # The title shown in the web interface
         DUMBDROP_TITLE: DumbDrop
@@ -351,7 +312,7 @@ services:
       - 3759:3000
     volumes:
       # Where your notes will be stored
-      - /mnt/c/Servers/dumbdo:/app/data
+      - ${ROOT_SERVER_CONFIG}/dumbdo:/app/data
     environment:
       # The title shown in the web interface
       SITE_TITLE: DumbDo
@@ -375,7 +336,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - /mnt/c/Servers/homepage/config:/app/config
+      - ${ROOT_SERVER_CONFIG}/homepage/config:/app/config
       - media_share:/data
     restart: unless-stopped
     
