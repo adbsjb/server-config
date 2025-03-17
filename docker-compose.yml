@@ -333,7 +333,7 @@ services:
     environment:
       - PUID=1001
       - PGID=1001
-      - HOMEPAGE_ALLOWED_HOSTS=alexball.uk
+      - HOMEPAGE_ALLOWED_HOSTS=alexball.uk,homepage:3000
     ports:
       - 3000:3000
     volumes:
