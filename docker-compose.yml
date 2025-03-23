@@ -281,7 +281,7 @@ services:
         # Optional PIN protection (leave empty to disable)
         DUMBDROP_PIN: 2525
         # Upload without clicking button
-        AUTO_UPLOAD: true
+        AUTO_UPLOAD: "true"
         # The base URL for the application
         BASE_URL: http://dumbdrop.alexball.uk
     labels:
@@ -331,9 +331,9 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     environment:
-      - PUID=1001
-      - PGID=1001
-      - HOMEPAGE_ALLOWED_HOSTS=alexball.uk,homepage:3000
+      PUID: 1001
+      PGI: 1001
+      HOMEPAGE_ALLOWED_HOSTS: homepage:3000,localhost:3000,alexball.uk
     ports:
       - 3000:3000
     volumes:
