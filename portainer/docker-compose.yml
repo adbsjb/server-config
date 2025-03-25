@@ -5,7 +5,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-        - /mnt/c/Users/adbsj/OneDrive/Documents/Server-config-files/portainer:/data
+        - /mnt/c/Servers/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     labels:
