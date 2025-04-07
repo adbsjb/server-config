@@ -156,6 +156,45 @@ services:
       - homepage.href=http://audiobookshelf.alexball.uk
       - homepage.description=Audiobook Server
       
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - ${ROOT_SERVER_CONFIG}/komga:/config
+      - media_share:/data
+    ports:
+      - 25600:25600
+    user: "1001:1001"
+    environment:
+      - TZ=Europe/London
+    restart: unless-stopped
+    labels:
+      - homepage.group=Media
+      - homepage.name=Komga
+      - homepage.icon=sh-komga.png
+      - homepage.href=http://komga.alexball.uk
+      - homepage.description=Comic & Manga Server
+      
+  mylar3:
+    image: lscr.io/linuxserver/mylar3:latest
+    container_name: mylar3
+    environment:
+      - PUID=1001
+      - PGID=1001
+    volumes:
+      - ${ROOT_SERVER_CONFIG}/mylar3/config:/config
+      - media_share:/comics
+      - ${DOWNLOAD_LOCATION}:/downloads
+    ports:
+      - 8090:8090
+    restart: unless-stopped
+    labels:
+      - homepage.group=Admin
+      - homepage.name=Mylar
+      - homepage.icon=sh-mylar.png
+      - homepage.href=http://mylar.alexball.uk
+      - homepage.description=Comic & Manga fetcher
+      
   glances:
     image: nicolargo/glances:latest-full
     container_name: glances
