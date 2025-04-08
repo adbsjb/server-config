@@ -173,26 +173,22 @@ services:
       - homepage.name=Komga
       - homepage.icon=sh-komga.png
       - homepage.href=http://komga.alexball.uk
-      - homepage.description=Comic & Manga Server
+      - homepage.description=Comic & Manga Reader
       
-  mylar3:
-    image: lscr.io/linuxserver/mylar3:latest
-    container_name: mylar3
-    environment:
-      - PUID=1001
-      - PGID=1001
+  kapowarr:
+    container_name: kapowarr
+    image: mrcas/kapowarr:latest
     volumes:
-      - ${ROOT_SERVER_CONFIG}/mylar3/config:/config
-      - media_share:/comics
-      - ${DOWNLOAD_LOCATION}:/downloads
+      - "${ROOT_SERVER_CONFIG}/kapowarr-db:/app/db"
+      - "${DOWNLOAD_LOCATION}:/app/temp_downloads"
+      - "media_share:/comics-1"
     ports:
-      - 8090:8090
-    restart: unless-stopped
+      - 5656:5656
     labels:
       - homepage.group=Admin
-      - homepage.name=Mylar
-      - homepage.icon=sh-mylar.png
-      - homepage.href=http://mylar.alexball.uk
+      - homepage.name=Kapowarr
+      - homepage.icon=sh-kapowarr.png
+      - homepage.href=http://kapowarr.alexball.uk
       - homepage.description=Comic & Manga fetcher
       
   glances:
@@ -401,6 +397,3 @@ volumes:
       type: cifs
       o: "username=,password=,vers=1.0,uid=1001,gid=1001"
       device: "//192.168.1.211/6TB Share"
-  mysql_data:
-  romm_resources:
-  romm_redis_data:
