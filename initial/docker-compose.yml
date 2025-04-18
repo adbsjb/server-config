@@ -5,7 +5,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-        - /home/alex/Servers/portainer:/data
+        - ${ROOT_SERVER_CONFIG}/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     labels:
@@ -23,10 +23,10 @@ services:
       - NET_ADMIN
     network_mode: "host"
     volumes:
-      - /home/alex/Servers/Caddy/conf:/etc/caddy
-      - /home/alex/Servers/Caddy/site:/srv
-      - caddy_data:/data
-      - caddy_config:/config
+      - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
+      - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
+      - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
+      - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
 
   ddns-updater:
     image: qmcgaw/ddns-updater
@@ -35,7 +35,7 @@ services:
     ports:
       - 8000:8000/tcp
     volumes:
-      - /home/alex/Servers/ddns-updater/data:/updater/data
+      - ${ROOT_SERVER_CONFIG}/ddns-updater/data:/updater/data
     environment:
       - CONFIG=
       - PERIOD=5m
@@ -67,8 +67,3 @@ services:
       - homepage.icon=sh-portainer.png
       - homepage.href=http://ddns.alexball.uk
       - homepage.description=DDNS Updater
-
-volumes:
-  caddy_data:
-  caddy_config:
-
