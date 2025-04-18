@@ -5,7 +5,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-        - /mnt/c/Servers/portainer:/data
+        - /home/alex/Servers/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     labels:
@@ -14,3 +14,24 @@ services:
       - homepage.icon=sh-portainer.png
       - homepage.href=http://portainer.alexball.uk
       - homepage.description=Docker container manager
+
+  caddy:
+    container_name: caddy
+    image: caddy:latest
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - /home/alex/Servers/Caddy/conf:/etc/caddy
+      - /home/alex/Servers/Caddy/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
+
