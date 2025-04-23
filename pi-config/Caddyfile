@@ -10,7 +10,7 @@ alexball.uk {
 }
 
 #jellyfin.alexball.uk {
-#	reverse_proxy {vars.localAddress}:8096
+#	reverse_proxy {$SERVER_ADDRESS}:8096
 #}
 
 requester.alexball.uk {
@@ -18,23 +18,23 @@ requester.alexball.uk {
 }
 
 sonarr.alexball.uk {
-	reverse_proxy {vars.localAddress}:8989
+	reverse_proxy {$SERVER_ADDRESS}:8989
 }
 
 radarr.alexball.uk {
-	reverse_proxy {vars.localAddress}:7878
+	reverse_proxy {$SERVER_ADDRESS}:7878
 }
 
 prowlarr.alexball.uk {
-	reverse_proxy {vars.localAddress}:9696
+	reverse_proxy {$SERVER_ADDRESS}:9696
 }
 
 qb.alexball.uk {
-	reverse_proxy {vars.localAddress}:8080
+	reverse_proxy {$SERVER_ADDRESS}:8080
 }
 
 bazarr.alexball.uk {
-	reverse_proxy {vars.localAddress}:6767
+	reverse_proxy {$SERVER_ADDRESS}:6767
 }
 
 storage.alexball.uk {
@@ -42,20 +42,18 @@ storage.alexball.uk {
 }
 
 audiobookshelf.alexball.uk {
-	reverse_proxy {vars.localAddress}:13378
+	reverse_proxy {$SERVER_ADDRESS}:13378
 }
 
 readarr.alexball.uk {
-	reverse_proxy {vars.localAddress}:8787
+	reverse_proxy {$SERVER_ADDRESS}:8787
 }
 
 glances.alexball.uk {
-  reverse_proxy {vars.localAddress}:61208
+  reverse_proxy {$SERVER_ADDRESS}:61208
 }
 
 portainer.alexball.uk {
- 	#reverse_proxy 192.168.1.245:9000  
-	#reverse_proxy {vars.localAddress}:9000
 	reverse_proxy {$SERVER_ADDRESS}:9000
 }
 
@@ -69,43 +67,43 @@ portainer.alexball.uk {
 #}
 
 wizarr.alexball.uk {
-  reverse_proxy {vars.localAddress}:5690
+  reverse_proxy {$SERVER_ADDRESS}:5690
 }
 
 #jellyseerr.alexball.uk {
-#  reverse_proxy {vars.localAddress}:5055
+#  reverse_proxy {$SERVER_ADDRESS}:5055
 #}
 
 mealie.alexball.uk {
-  reverse_proxy {vars.localAddress}:9925
+  reverse_proxy {$SERVER_ADDRESS}:9925
 }
 
 lurker.alexball.uk {
-  reverse_proxy {vars.localAddress}:3333
+  reverse_proxy {$SERVER_ADDRESS}:3333
 }
 
 dumbpad.alexball.uk {
-  reverse_proxy {vars.localAddress}:3756
+  reverse_proxy {$SERVER_ADDRESS}:3756
 }
 
 dumbdrop.alexball.uk {
-  reverse_proxy {vars.localAddress}:3757
+  reverse_proxy {$SERVER_ADDRESS}:3757
 }
 
 dumbwhois.alexball.uk {
-  reverse_proxy {vars.localAddress}:3758
+  reverse_proxy {$SERVER_ADDRESS}:3758
 }
 
 dumbdo.alexball.uk {
-  reverse_proxy {vars.localAddress}:3759
+  reverse_proxy {$SERVER_ADDRESS}:3759
 }
 
 komga.alexball.uk {
-  reverse_proxy {vars.localAddress}:25600
+  reverse_proxy {$SERVER_ADDRESS}:25600
 }
 
 kapowarr.alexball.uk {
-  reverse_proxy {vars.localAddress}:5656
+  reverse_proxy {$SERVER_ADDRESS}:5656
 }
 
 ddns.alexball.uk {
