@@ -1,12 +1,12 @@
 {
     #Uncomment to enable test mode
-    #acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
+    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
 }
 
 
 
 alexball.uk {
-	vars localAddress localhost
+	vars localAddress 192.168.1.245
 	reverse_proxy {vars.localAddress}:3000
 }
 
