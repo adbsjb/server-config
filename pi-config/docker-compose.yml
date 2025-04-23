@@ -7,7 +7,7 @@ services:
       - NET_ADMIN
     network_mode: "host"
     volumes:
-      - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
+      - /home/alex/server-config/pi-config:/etc/caddy
       - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
       - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
       - ${ROOT_SERVER_CONFIG}/Caddy/config:/config

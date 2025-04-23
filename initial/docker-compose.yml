@@ -15,76 +15,23 @@ services:
       - homepage.href=http://portainer.alexball.uk
       - homepage.description=Docker container manager
 
-  caddy:
-    container_name: caddy
-    image: caddy:latest
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-    network_mode: "host"
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
-      - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
-      - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
-      - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
+  # hbbs:
+  #   container_name: hbbs
+  #   image: rustdesk/rustdesk-server:latest
+  #   command: hbbs
+  #   volumes:
+  #     - ${ROOT_SERVER_CONFIG}/rustdesk/hbbs:/root
+  #   network_mode: "host"
 
-  ddns-updater:
-    image: qmcgaw/ddns-updater
-    container_name: ddns-updater
-    network_mode: bridge
-    ports:
-      - 8000:8000/tcp
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/ddns-updater/data:/updater/data
-    environment:
-      - CONFIG=
-      - PERIOD=5m
-      - UPDATE_COOLDOWN_PERIOD=5m
-      - PUBLICIP_FETCHERS=all
-      - PUBLICIP_HTTP_PROVIDERS=all
-      - PUBLICIPV4_HTTP_PROVIDERS=all
-      - PUBLICIPV6_HTTP_PROVIDERS=all
-      - PUBLICIP_DNS_PROVIDERS=all
-      - PUBLICIP_DNS_TIMEOUT=3s
-      - HTTP_TIMEOUT=10s
+  #   depends_on:
+  #     - hbbr
+  #   restart: unless-stopped
 
-      # Web UI
-      - LISTENING_ADDRESS=:8000
-      - ROOT_URL=/
-
-      # Backup
-      - BACKUP_PERIOD=0 # 0 to disable
-      - BACKUP_DIRECTORY=/updater/data
-
-      # Other
-      - LOG_LEVEL=info
-      - LOG_CALLER=hidden
-      - SHOUTRRR_ADDRESSES=
-    restart: always
-    labels:
-      - homepage.group=Admin
-      - homepage.name=DDNS-Updater
-      - homepage.icon=sh-dns-updater.png
-      - homepage.href=http://ddns.alexball.uk
-      - homepage.description=DDNS Updater
-
-  hbbs:
-    container_name: hbbs
-    image: rustdesk/rustdesk-server:latest
-    command: hbbs
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/rustdesk/hbbs:/root
-    network_mode: "host"
-
-    depends_on:
-      - hbbr
-    restart: unless-stopped
-
-  hbbr:
-    container_name: hbbr
-    image: rustdesk/rustdesk-server:latest
-    command: hbbr
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/rustdesk/hbbr:/root
-    network_mode: "host"
-    restart: unless-stopped
+  # hbbr:
+  #   container_name: hbbr
+  #   image: rustdesk/rustdesk-server:latest
+  #   command: hbbr
+  #   volumes:
+  #     - ${ROOT_SERVER_CONFIG}/rustdesk/hbbr:/root
+  #   network_mode: "host"
+  #   restart: unless-stopped
