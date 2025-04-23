@@ -11,6 +11,8 @@ services:
       - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
       - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
       - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
+    environment:
+      - SERVER_ADDRESS=192.168.1.245
 
   ddns-updater:
     image: qmcgaw/ddns-updater

@@ -1,18 +1,17 @@
 {
-    #Uncomment to enable test mode
-    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
+    	#Uncomment to enable test mode
+   	 acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
 }
 
 
 
 alexball.uk {
-	vars localAddress 192.168.1.245
-	reverse_proxy {vars.localAddress}:3000
+	reverse_proxy {$SERVER_ADDRESS}:3000
 }
 
-jellyfin.alexball.uk {
-	reverse_proxy {vars.localAddress}:8096
-}
+#jellyfin.alexball.uk {
+#	reverse_proxy {vars.localAddress}:8096
+#}
 
 requester.alexball.uk {
 	redir http://jellyseerr.alexball.uk
@@ -55,7 +54,9 @@ glances.alexball.uk {
 }
 
 portainer.alexball.uk {
-  reverse_proxy {vars.localAddress}:9000
+ 	#reverse_proxy 192.168.1.245:9000  
+	#reverse_proxy {vars.localAddress}:9000
+	reverse_proxy {$SERVER_ADDRESS}:9000
 }
 
 #crafty.alexball.uk {
@@ -71,9 +72,9 @@ wizarr.alexball.uk {
   reverse_proxy {vars.localAddress}:5690
 }
 
-jellyseerr.alexball.uk {
-  reverse_proxy {vars.localAddress}:5055
-}
+#jellyseerr.alexball.uk {
+#  reverse_proxy {vars.localAddress}:5055
+#}
 
 mealie.alexball.uk {
   reverse_proxy {vars.localAddress}:9925
@@ -108,5 +109,5 @@ kapowarr.alexball.uk {
 }
 
 ddns.alexball.uk {
-  reverse_proxy {vars.localAddress}:8000
+  reverse_proxy localhost:8000
 }
