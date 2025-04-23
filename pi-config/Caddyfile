@@ -1,6 +1,6 @@
 {
     	#Uncomment to enable test mode
-   	 acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
+   	#acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
 }
 
 
@@ -9,9 +9,9 @@ alexball.uk {
 	reverse_proxy {$SERVER_ADDRESS}:3000
 }
 
-#jellyfin.alexball.uk {
-#	reverse_proxy {$SERVER_ADDRESS}:8096
-#}
+jellyfin.alexball.uk {
+	reverse_proxy {$SERVER_ADDRESS}:8096
+}
 
 requester.alexball.uk {
 	redir http://jellyseerr.alexball.uk
@@ -70,9 +70,9 @@ wizarr.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:5690
 }
 
-#jellyseerr.alexball.uk {
-#  reverse_proxy {$SERVER_ADDRESS}:5055
-#}
+jellyseerr.alexball.uk {
+  reverse_proxy {$SERVER_ADDRESS}:5055
+}
 
 mealie.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:9925
