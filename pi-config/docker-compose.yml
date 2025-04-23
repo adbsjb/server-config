@@ -1,20 +1,4 @@
 services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    ports:
-      - 9000:9000
-    volumes:
-        - ${ROOT_SERVER_CONFIG}/portainer:/data
-        - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Portainer
-      - homepage.icon=sh-portainer.png
-      - homepage.href=http://portainer.alexball.uk
-      - homepage.description=Docker container manager
-
   caddy:
     container_name: caddy
     image: caddy:latest

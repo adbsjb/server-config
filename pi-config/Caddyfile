@@ -1,0 +1,112 @@
+{
+    #Uncomment to enable test mode
+    #acme_ca https://acme-staging-v02.api.letsencrypt.org/directory	
+}
+
+
+
+alexball.uk {
+	vars localAddress localhost
+	reverse_proxy {vars.localAddress}:3000
+}
+
+jellyfin.alexball.uk {
+	reverse_proxy {vars.localAddress}:8096
+}
+
+requester.alexball.uk {
+	redir http://jellyseerr.alexball.uk
+}
+
+sonarr.alexball.uk {
+	reverse_proxy {vars.localAddress}:8989
+}
+
+radarr.alexball.uk {
+	reverse_proxy {vars.localAddress}:7878
+}
+
+prowlarr.alexball.uk {
+	reverse_proxy {vars.localAddress}:9696
+}
+
+qb.alexball.uk {
+	reverse_proxy {vars.localAddress}:8080
+}
+
+bazarr.alexball.uk {
+	reverse_proxy {vars.localAddress}:6767
+}
+
+storage.alexball.uk {
+	reverse_proxy 192.168.1.211
+}
+
+audiobookshelf.alexball.uk {
+	reverse_proxy {vars.localAddress}:13378
+}
+
+readarr.alexball.uk {
+	reverse_proxy {vars.localAddress}:8787
+}
+
+glances.alexball.uk {
+  reverse_proxy {vars.localAddress}:61208
+}
+
+portainer.alexball.uk {
+  reverse_proxy {vars.localAddress}:9000
+}
+
+#crafty.alexball.uk {
+#  reverse_proxy https://127.0.0.1:8443 {
+#        transport http {
+#            tls
+#            tls_insecure_skip_verify
+#        }
+#    }
+#}
+
+wizarr.alexball.uk {
+  reverse_proxy {vars.localAddress}:5690
+}
+
+jellyseerr.alexball.uk {
+  reverse_proxy {vars.localAddress}:5055
+}
+
+mealie.alexball.uk {
+  reverse_proxy {vars.localAddress}:9925
+}
+
+lurker.alexball.uk {
+  reverse_proxy {vars.localAddress}:3333
+}
+
+dumbpad.alexball.uk {
+  reverse_proxy {vars.localAddress}:3756
+}
+
+dumbdrop.alexball.uk {
+  reverse_proxy {vars.localAddress}:3757
+}
+
+dumbwhois.alexball.uk {
+  reverse_proxy {vars.localAddress}:3758
+}
+
+dumbdo.alexball.uk {
+  reverse_proxy {vars.localAddress}:3759
+}
+
+komga.alexball.uk {
+  reverse_proxy {vars.localAddress}:25600
+}
+
+kapowarr.alexball.uk {
+  reverse_proxy {vars.localAddress}:5656
+}
+
+ddns.alexball.uk {
+  reverse_proxy {vars.localAddress}:8000
+}
