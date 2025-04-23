@@ -19,7 +19,7 @@ services:
     ports:
       - 8000:8000/tcp
     volumes:
-      - ${ROOT_SERVER_CONFIG}/ddns-updater/data:/updater/data
+      - /home/alex/server-config/pi-config/ddns-updater:/updater/data
     environment:
       - CONFIG=
       - PERIOD=5m
