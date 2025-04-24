@@ -260,21 +260,6 @@ services:
       - homepage.icon=sh-mealie.png
       - homepage.href=http://mealie.alexball.uk
       - homepage.description=Recipe Database
-
-  lurker:
-    image: ghcr.io/oppiliappan/lurker:latest
-    container_name: lurker
-    restart: unless-stopped
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/lurker:/data
-    ports:
-      - "3333:3000"
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Lurker
-      - homepage.icon=sh-reddit-light.png
-      - homepage.href=http://lurker.alexball.uk
-      - homepage.description=Alt Reddit Frontend
       
   dumbpad:
     image: dumbwareio/dumbpad:latest
