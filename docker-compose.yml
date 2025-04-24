@@ -164,7 +164,7 @@ services:
       - media_share:/data
     ports:
       - 25600:25600
-    user: "1001:1001"
+    user: "1000:1000"
     environment:
       - TZ=Europe/London
     restart: unless-stopped
