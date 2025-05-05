@@ -124,6 +124,7 @@ services:
     volumes:
       - ${ROOT_SERVER_CONFIG}/qbittorrent/appdata:/config
       - ${DOWNLOAD_LOCATION}:/data/downloads
+      - media_share:/data/STORAGE
     ports:
       - 8080:8080
       - 6881:6881
