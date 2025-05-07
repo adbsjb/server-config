@@ -23,8 +23,8 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1001
+      - PGID=1001
     volumes:
       - ${ROOT_SERVER_CONFIG}/sonarr/data:/config
       - media_share:/data
@@ -43,8 +43,8 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1001
+      - PGID=1001
     volumes:
       - ${ROOT_SERVER_CONFIG}/radarr/data:/config
       - media_share:/data
