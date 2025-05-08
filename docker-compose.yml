@@ -27,7 +27,7 @@ services:
       - PGID=1001
     volumes:
       - ${ROOT_SERVER_CONFIG}/sonarr/data:/config
-      - media_share:/data
+      - media_share:/data/STORAGE
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
       - 8989:8989
@@ -47,7 +47,7 @@ services:
       - PGID=1001
     volumes:
       - ${ROOT_SERVER_CONFIG}/radarr/data:/config
-      - media_share:/data
+      - media_share:/data/STORAGE
       - ${DOWNLOAD_LOCATION}:/data/downloads
     ports:
       - 7878:7878
