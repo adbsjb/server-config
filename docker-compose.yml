@@ -87,7 +87,7 @@ services:
       - PGID=0
     volumes:
       - ${ROOT_SERVER_CONFIG}/bazarr/config:/config
-      - media_share:/data
+      - media_share:/data/STORAGE
     ports:
       - 6767:6767
     restart: unless-stopped
