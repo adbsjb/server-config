@@ -346,20 +346,20 @@ services:
       - homepage.href=http://dumbdo.alexball.uk
       - homepage.description=Simple collaborative to do list
 
-  iptv-epg:
-    image: iptv-org/epg:latest
-    container_name: iptv-epg
-    restart: unless-stopped
-    ports:
-      - 3384:3000
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/iptv-epg:/epg/channel
-    labels:
-      - homepage.group=Admin
-      - homepage.name=iptv-epg
-      #- homepage.icon=sh-dumbdo.png
-      - homepage.href=http://iptv.alexball.uk
-      - homepage.description=iptv epg xml
+  # iptv-epg:
+  #   image: iptv-org/epg:latest
+  #   container_name: iptv-epg
+  #   restart: unless-stopped
+  #   ports:
+  #     - 3384:3000
+  #   volumes:
+  #     - ${ROOT_SERVER_CONFIG}/iptv-epg:/epg/channel
+  #   labels:
+  #     - homepage.group=Admin
+  #     - homepage.name=iptv-epg
+  #     #- homepage.icon=sh-dumbdo.png
+  #     - homepage.href=http://iptv.alexball.uk
+  #     - homepage.description=iptv epg xml
       
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
