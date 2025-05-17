@@ -57,6 +57,10 @@ portainer.alexball.uk {
 	reverse_proxy {$SERVER_ADDRESS}:9000
 }
 
+iptv.alexball.uk {
+	reverse_proxy {$SERVER_ADDRESS}:3384
+}
+
 #crafty.alexball.uk {
 #  reverse_proxy https://127.0.0.1:8443 {
 #        transport http {
