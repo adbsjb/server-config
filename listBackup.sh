@@ -1,2 +1,2 @@
 #!/bin/bash
-borg list ~/ServerBackups
+borg list ~/ServerBackup

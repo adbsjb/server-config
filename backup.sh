@@ -7,4 +7,4 @@ borg create --stats --progress \
   --compression lz4 \
   --exclude ~/Servers/jellyfin/library/cache \
   --exclude ~/Servers/jellyfin/library/data/metadata/People \
-  ~/ServerBackups/::$backupName ~/Servers
+  ~/ServerBackup/::$backupName ~/Servers
