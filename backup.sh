@@ -8,3 +8,5 @@ borg create --stats --progress \
   --exclude ~/Servers/jellyfin/library/cache \
   --exclude ~/Servers/jellyfin/library/data/metadata/People \
   ~/ServerBackup/::$backupName ~/Servers
+
+rclone sync --progress ~/ServerBackup/ remote:/ServerBackup/
