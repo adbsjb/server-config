@@ -129,6 +129,7 @@ services:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
+      - 19730:19730
     restart: unless-stopped
     labels:
       - homepage.group=Admin
