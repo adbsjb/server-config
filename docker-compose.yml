@@ -8,7 +8,7 @@ services:
       - JELLYFIN_PublishedServerUrl=http://jellyfin.alexball.uk
     volumes:
       -  ${ROOT_SERVER_CONFIG}/jellyfin/library:/config
-      -  ${ROOT_SERVER_CONFIG}/jellyfin/web-config.json:/jellyfin/jellyfin-web/config.json
+      -  ${ROOT_SERVER_CONFIG}/jellyfin/web-config.json:/usr/share/jellyfin/web/config.json
       -  media_share:/data
     ports:
       - 8096:8096
