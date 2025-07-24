@@ -2,12 +2,12 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
-    runtime: nvidia
+    #runtime: nvidia
     environment:
       - PUID=0
       - PGID=0
       - JELLYFIN_PublishedServerUrl=http://jellyfin.alexball.uk
-      - NVIDIA_VISIBLE_DEVICES=all
+    #  - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       -  ${ROOT_SERVER_CONFIG}/jellyfin/library:/config
       -  ${ROOT_SERVER_CONFIG}/jellyfin/web-config.json:/usr/share/jellyfin/web/config.json
