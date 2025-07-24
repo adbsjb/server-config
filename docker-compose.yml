@@ -62,25 +62,25 @@ services:
       - homepage.href=http://radarr.alexball.uk
       - homepage.description=Movie fetcher
     
-  readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=0
-      - PGID=0
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/readarr/data:/config
-      - media_share:/books
-      - ${DOWNLOAD_LOCATION}:/data/downloads
-    ports:
-      - 8787:8787
-    restart: unless-stopped
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Readarr
-      - homepage.icon=sh-readarr.png
-      - homepage.href=http://readarr.alexball.uk
-      - homepage.description=Book & Audiobook fetcher
+  # readarr:
+  #   image: lscr.io/linuxserver/readarr:develop
+  #   container_name: readarr
+  #   environment:
+  #     - PUID=0
+  #     - PGID=0
+  #   volumes:
+  #     - ${ROOT_SERVER_CONFIG}/readarr/data:/config
+  #     - media_share:/books
+  #     - ${DOWNLOAD_LOCATION}:/data/downloads
+  #   ports:
+  #     - 8787:8787
+  #   restart: unless-stopped
+  #   labels:
+  #     - homepage.group=Admin
+  #     - homepage.name=Readarr
+  #     - homepage.icon=sh-readarr.png
+  #     - homepage.href=http://readarr.alexball.uk
+  #     - homepage.description=Book & Audiobook fetcher
 
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
