@@ -292,6 +292,21 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
     restart: unless-stopped
     
+  caddy:
+    container_name: caddy
+    image: caddy:latest
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
+    volumes:
+      - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
+      - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
+      - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
+      - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
+    environment:
+      - SERVER_ADDRESS=192.168.1.245
+    
 volumes:
   media_share:
     driver: local
