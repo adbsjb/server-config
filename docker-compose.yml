@@ -305,7 +305,7 @@ services:
       - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
       - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
     environment:
-      - SERVER_ADDRESS=192.168.1.245
+      - SERVER_ADDRESS=192.168.1.100
     
 volumes:
   media_share:
