@@ -359,7 +359,20 @@ services:
           interval: 10s
           timeout: 5s
           retries: 5
-    
+
+  donetick:
+    image: donetick/donetick
+    container_name: donetick
+    restart: unless-stopped
+    ports:
+      - 2021:2021
+    volumes:
+      - ${ROOT_SERVER_CONFIG}/donetick/data:/donetick-data
+      - ${ROOT_SERVER_CONFIG}/donetick/config:/config
+    environment:
+      - DT_ENV=selfhosted
+      - DT_SQLITE_PATH=/donetick-data/donetick.db
+      
 volumes:
   mysql_data:
   romm_resources:

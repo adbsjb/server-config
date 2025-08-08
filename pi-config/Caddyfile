@@ -113,3 +113,7 @@ ddns.alexball.uk {
 romm.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:4545
 }
+
+donetick.alexball.uk {
+  reverse_proxy {$SERVER_ADDRESS}:2021
+}
