@@ -317,10 +317,10 @@ services:
           - DB_USER=romm-user # Should match MARIADB_USER in mariadb
           - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
           - ROMM_AUTH_SECRET_KEY=a220cf155095de76a0f933f932cab3211ee999297c838fc06e89b557db7017de # Generate a key with `openssl rand -hex 32`
-          - SCREENSCRAPER_USER= # These are the recommended metadata providers
-          - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
-          - RETROACHIEVEMENTS_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
-          - STEAMGRIDDB_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
+          - SCREENSCRAPER_USER=adbsjb # These are the recommended metadata providers
+          - SCREENSCRAPER_PASSWORD=ytxfci7qV3wF # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
+          - RETROACHIEVEMENTS_API_KEY=behlmSkE5ZEZTSfjkPxfNJiun4o50kZ2 # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
+          - STEAMGRIDDB_API_KEY=8925dd44a2cb8d59f938583aa5b3c3d9 # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
           - HASHEOUS_API_ENABLED=true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
       volumes:
           - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
