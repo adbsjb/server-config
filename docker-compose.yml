@@ -329,7 +329,7 @@ services:
           - ${ROOT_SERVER_CONFIG}/romm/assets:/romm/assets # Uploaded saves, states, etc.
           - ${ROOT_SERVER_CONFIG}/romm/config:/romm/config # Path where config.yml is stored
       ports:
-          - 80:8080
+          - 8989:8080
       labels:
           - homepage.group=Media
           - homepage.name=RomM

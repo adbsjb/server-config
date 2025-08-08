@@ -109,3 +109,7 @@ kapowarr.alexball.uk {
 ddns.alexball.uk {
   reverse_proxy localhost:8000
 }
+
+romm.alexball.uk {
+  reverse_proxy {$SERVER_ADDRESS}:8989
+}
