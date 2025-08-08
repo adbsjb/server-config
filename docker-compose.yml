@@ -180,21 +180,21 @@ services:
       - homepage.href=http://komga.alexball.uk
       - homepage.description=Comic & Manga Reader
       
-  kapowarr:
-    container_name: kapowarr
-    image: mrcas/kapowarr:latest
-    volumes:
-      - "${ROOT_SERVER_CONFIG}/kapowarr-db:/app/db"
-      - "${DOWNLOAD_LOCATION}:/app/temp_downloads"
-      - "media_share:/comics-1"
-    ports:
-      - 5656:5656
-    labels:
-      - homepage.group=Admin
-      - homepage.name=Kapowarr
-      - homepage.icon=sh-kapowarr.png
-      - homepage.href=http://kapowarr.alexball.uk
-      - homepage.description=Comic & Manga fetcher
+  # kapowarr:
+  #   container_name: kapowarr
+  #   image: mrcas/kapowarr:latest
+  #   volumes:
+  #     - "${ROOT_SERVER_CONFIG}/kapowarr-db:/app/db"
+  #     - "${DOWNLOAD_LOCATION}:/app/temp_downloads"
+  #     - "media_share:/comics-1"
+  #   ports:
+  #     - 5656:5656
+  #   labels:
+  #     - homepage.group=Admin
+  #     - homepage.name=Kapowarr
+  #     - homepage.icon=sh-kapowarr.png
+  #     - homepage.href=http://kapowarr.alexball.uk
+  #     - homepage.description=Comic & Manga fetcher
       
   glances:
     image: nicolargo/glances:latest-full
@@ -292,22 +292,78 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
     restart: unless-stopped
     
-  caddy:
-    container_name: caddy
-    image: caddy:latest
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-    network_mode: "host"
-    volumes:
-      - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
-      - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
-      - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
-      - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
-    environment:
-      - SERVER_ADDRESS=192.168.1.245
+  # caddy:
+  #   container_name: caddy
+  #   image: caddy:latest
+  #   restart: unless-stopped
+  #   cap_add:
+  #     - NET_ADMIN
+  #   network_mode: "host"
+  #   volumes:
+  #     - ${ROOT_SERVER_CONFIG}/Caddy/conf:/etc/caddy
+  #     - ${ROOT_SERVER_CONFIG}/Caddy/site:/srv
+  #     - ${ROOT_SERVER_CONFIG}/Caddy/data:/data
+  #     - ${ROOT_SERVER_CONFIG}/Caddy/config:/config
+  #   environment:
+  #     - SERVER_ADDRESS=192.168.1.245
+
+  romm:
+      image: rommapp/romm:latest
+      container_name: romm
+      restart: unless-stopped
+      environment:
+          - DB_HOST=romm-db
+          - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+          - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+          - DB_PASSWD=password # Should match MARIADB_PASSWORD in mariadb
+          - ROMM_AUTH_SECRET_KEY=a220cf155095de76a0f933f932cab3211ee999297c838fc06e89b557db7017de # Generate a key with `openssl rand -hex 32`
+          - SCREENSCRAPER_USER= # These are the recommended metadata providers
+          - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
+          - RETROACHIEVEMENTS_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
+          - STEAMGRIDDB_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
+          - HASHEOUS_API_ENABLED=true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
+      volumes:
+          - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+          - romm_redis_data:/redis-data # Cached data for background tasks
+          - ${ROOT_SERVER_CONFIG}/romm/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
+          - ${ROOT_SERVER_CONFIG}/romm/assets:/romm/assets # Uploaded saves, states, etc.
+          - ${ROOT_SERVER_CONFIG}/romm/config:/romm/config # Path where config.yml is stored
+      ports:
+          - 80:8080
+      labels:
+          - homepage.group=Media
+          - homepage.name=RomM
+          - homepage.icon=sh-romm.png
+          - homepage.href=http://romm.alexball.uk
+          - homepage.description=Retro Game Server
+      depends_on:
+          romm-db:
+              condition: service_healthy
+              restart: true
+
+  romm-db:
+      image: mariadb:latest
+      container_name: romm-db
+      restart: unless-stopped
+      environment:
+          - MARIADB_ROOT_PASSWORD= # Use a unique, secure password
+          - MARIADB_DATABASE=romm
+          - MARIADB_USER=romm-user
+          - MARIADB_PASSWORD=password
+      volumes:
+          - mysql_data:/var/lib/mysql
+      healthcheck:
+          test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+          start_period: 30s
+          start_interval: 10s
+          interval: 10s
+          timeout: 5s
+          retries: 5
     
 volumes:
+  mysql_data:
+  romm_resources:
+  romm_redis_data:
   media_share:
     driver: local
     driver_opts:
