@@ -372,6 +372,12 @@ services:
     environment:
       - DT_ENV=selfhosted
       - DT_SQLITE_PATH=/donetick-data/donetick.db
+    labels:
+          - homepage.group=Media
+          - homepage.name=Donetick
+          - homepage.icon=sh-donetick.png
+          - homepage.href=http://donetick.alexball.uk
+          - homepage.description=Chore list
       
 volumes:
   mysql_data:
