@@ -117,3 +117,7 @@ romm.alexball.uk {
 donetick.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:2021
 }
+
+calibre.alexball.uk {
+  reverse_proxy {$SERVER_ADDRESS}:8083
+}
