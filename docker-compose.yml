@@ -397,6 +397,12 @@ services:
       - 8181:8181
       - 8081:8081
     restart: unless-stopped
+    labels:
+          - homepage.group=Admin
+          - homepage.name=Calibre Manage
+          - homepage.icon=sh-calibre.png
+          - homepage.href=http://managecalibre.alexball.uk
+          - homepage.description=Ebook library backend
 
 
   calibre-web:
