@@ -1,11 +1,7 @@
 #!/bin/bash
-echo Latest Backups:
-echo
-./listBackup.sh
+backupName="backup_$(date +\%Y-\%m-\%d)"
 
-echo
-echo Enter name of backup:
-read backupName
+echo Starting backup process for $backupName
 
 echo
 echo Pausing all containers
@@ -26,3 +22,6 @@ docker unpause $(docker ps -q)
 echo
 echo Syncing to OneDrive
 rclone sync --progress ~/ServerBackup/ remote:/ServerBackup/
+
+echo
+echo Backup finished
