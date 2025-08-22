@@ -123,5 +123,10 @@ calibre.alexball.uk {
 }
 
 managecalibre.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:8181
+    reverse_proxy https://127.0.0.1:8181 {
+        transport http {
+            tls
+            tls_insecure_skip_verify
+        }
+    }
 }
