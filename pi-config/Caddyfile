@@ -78,26 +78,6 @@ mealie.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:9925
 }
 
-lurker.alexball.uk {
-  reverse_proxy localhost:3333
-}
-
-dumbpad.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:3756
-}
-
-dumbdrop.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:3757
-}
-
-dumbwhois.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:3758
-}
-
-dumbdo.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:3759
-}
-
 komga.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:25600
 }
@@ -123,7 +103,7 @@ calibre.alexball.uk {
 }
 
 managecalibre.alexball.uk {
-    reverse_proxy https://127.0.0.1:8181 {
+    reverse_proxy https://{$SERVER_ADDRESS}:8181 {
         transport http {
             tls
             tls_insecure_skip_verify
