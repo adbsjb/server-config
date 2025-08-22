@@ -410,7 +410,7 @@ services:
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
     volumes:
       - ${ROOT_SERVER_CONFIG}/calibre-web/data:/config
-      - ${ROOT_SERVER_CONFIG}/calibre/library:/books
+      - ${ROOT_SERVER_CONFIG}/calibre/config/Library:/books
     ports:
       - 8083:8083
     restart: unless-stopped

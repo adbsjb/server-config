@@ -121,3 +121,7 @@ donetick.alexball.uk {
 calibre.alexball.uk {
   reverse_proxy {$SERVER_ADDRESS}:8083
 }
+
+managecalibre.alexball.uk {
+  reverse_proxy {$SERVER_ADDRESS}:8181
+}
