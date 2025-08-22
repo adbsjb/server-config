@@ -414,6 +414,12 @@ services:
     ports:
       - 8083:8083
     restart: unless-stopped
+    labels:
+          - homepage.group=Media
+          - homepage.name=Calibre Web
+          - homepage.icon=sh-calibre-web.png
+          - homepage.href=http://calibre.alexball.uk
+          - homepage.description=Ebook library and reader
       
 volumes:
   mysql_data:
