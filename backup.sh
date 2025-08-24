@@ -1,5 +1,5 @@
 #!/bin/bash
-backupName="backup_$(date +\%Y-\%m-\%d)"
+backupName="daily_backup_$(date +\%Y-\%m-\%d)"
 
 echo Starting backup process for $backupName
 
@@ -18,6 +18,14 @@ borg create --stats --progress \
 echo
 echo Resuming all containers
 docker unpause $(docker ps -q)
+
+echo
+echo pruning backups older than 1 month
+borg prune -v --list --keep-daily=31 ~/ServerBackup/
+
+echo
+echo compacting backups
+borg compact ~/ServerBackup/
 
 echo
 echo Syncing to OneDrive
