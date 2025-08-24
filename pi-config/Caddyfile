@@ -110,7 +110,3 @@ managecalibre.alexball.uk {
         }
     }
 }
-
-webhook.alexball.uk {
-  reverse_proxy {$SERVER_ADDRESS}:8484
-}
